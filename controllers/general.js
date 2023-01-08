@@ -45,10 +45,39 @@ const getDashboardData = async (req, res) => {
         res.status(500).json({message: error.message});
     }
 }
+
 const getAllProducts = async (req, res) => {
-    const products = Product.find();
-    res.status(200).json(products);
+    try {
+        console.log('helllllllllllllo')
+        const products = await Product.find();
+        res.status(200).json(products);
+    }
+    catch (error) {
+        console.log(error)
+        res.status(500).json({message: error.message});
+    }
 }
-module.exports = {getUser, getDashboardData, getAllProducts};
+const getCategories = async (req, res) => {
+    try {
+        const categories = ['clothing', 'accessories', 'misc', 'shoes'];
+        res.status(200).json({data: categories});
+    }
+    catch (error) {
+        console.log(error)
+        res.status(500).json({message: error.message});
+    }
+}
+const getCategoryProducts = async (req, res) => {
+    try {
+        const {category} = req.body;
+        console.log('category', category);
+        const products = Product.find({category});
+        res.status(200).json(products);
+    }
+    catch (error) {
+        console.log(error)
+        res.status(500).json({message: error.message});
+    }
+}
 
-
+module.exports = {getUser, getDashboardData, getAllProducts, getCategories, getCategoryProducts};
