@@ -20,6 +20,14 @@ const getProducts = async (req, res) => {
             })
           );
         res.status(200).json(productsWithStats);
+        // const products =  await Product.find();
+        // products.map(async(prod) => {
+        //     const newProd =  {...prod, _doc: {...prod._doc, image: 'https://i.pinimg.com/236x/f2/ff/70/f2ff700be40730c2128677de0815ec48.jpg',}};
+        //     console.log(newProd);
+        //     return await Product.findByIdAndUpdate(prod?._id, newProd, {new: true});
+           
+        // });
+        // res.status(200).json(products);
     }
     catch (error) {
         console.log(error)

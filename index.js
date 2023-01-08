@@ -41,7 +41,7 @@ mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopolo
     // Transactions.insertMany(dataTransaction)
     // OveralStat.insertMany(dataOverallStat)
     // AffiliateStat.insertMany(dataAffiliateStat)
-    app.listen(PORT, () => console.log('server is running on port ', PORT))
+    app.listen(PORT, () => console.log('server is running on port ', PORT));
 })
 .catch((error) => {
     console.log(error);

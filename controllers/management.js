@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const User = require('../models/User');
 const Transactions = require('../models/Transactions');
+const Product = require("../models/Product");
 
 const getAdmins = async (req, res) => {
     try {
@@ -47,12 +48,18 @@ const getUserPerformance = async (req, res) => {
 const signupUser = async (req, res) => {
     try {
         const user = req.body;
-        console.log('hello', user)
-        // const newUser = await new User(user);
-        // res.status(200).json(newUser);
+        console.log('hello', user);
+        const currentUser = await User.findOne({email: user?.email});
+        if (currentUser?.email) {
+            res.status(500).json({message: 'there is already account with this email'});
+        } else {
+            const newUser = new User(user);
+            await newUser.save();
+            res.status(200).json(newUser);
+        } 
     }
     catch (error) {
-        res.status(4004).json({message: error.message});
+        res.status(500).json({message: error.message});
     }
 }
 
@@ -62,7 +69,7 @@ const loginUser = async (req, res) => {
         console.log('hi hi')
         const { password, email } = req.body;
         console.log(password, email)
-        const currentUser = await User.find({ email: email });
+        const currentUser = await User.findOne({ email: email });
         if (currentUser?.email) {
             if (password == currentUser?.password) {
                 res.status(200).json(currentUser);
@@ -76,8 +83,17 @@ const loginUser = async (req, res) => {
         
     }
     catch (error) {
-        res.status(4004).json({message: error.message});
+        res.status(500).json({message: error.message});
     }
 }
 
-module.exports = {getAdmins, getUserPerformance, loginUser, signupUser};
+const fetchProducts = async (req, res) => {
+    try {
+        const products = await Product.find();
+        res.status(200).json(products);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+}
+
+module.exports = {getAdmins, getUserPerformance, loginUser, signupUser, fetchProducts};

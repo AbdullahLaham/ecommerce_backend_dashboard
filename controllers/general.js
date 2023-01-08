@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const OveralStat = require('../models/OveralStat');
 const Transactions = require('../models/Transactions');
+const Product = require('../models/Product');
 const getUser = async (req, res) => {
     try {
         const {id} = req.params;
@@ -44,6 +45,10 @@ const getDashboardData = async (req, res) => {
         res.status(500).json({message: error.message});
     }
 }
-module.exports = {getUser, getDashboardData};
+const getAllProducts = async (req, res) => {
+    const products = Product.find();
+    res.status(200).json(products);
+}
+module.exports = {getUser, getDashboardData, getAllProducts};
 
 
