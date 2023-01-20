@@ -17,7 +17,8 @@ const OveralStat = require('./models/OveralStat');
 //  , abdullah
 // const { createPost } = require('./controllers/posts');
 const {clientRoutes, generalRoutes, managementRoutes } = require('./routes');
-dotenv.config();
+
+
 const app = express();
 // app.use(helmet());
 // app.use(morgan("common"));
@@ -32,15 +33,9 @@ app.use('/management', managementRoutes);
 
 
 // MONGOOSE SETUP
-const PORT = process.env.PORT || 9000;
-mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true,})
+const PORT = 5000;
+mongoose.connect('mongodb+srv://abdullah:RSxfmjMhdGPpCXhU@cluster0.dpiojbe.mongodb.net/?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true,})
 .then(() => {
-    // only add data on time
-    // Product.insertMany(dataProduct);
-    // ProductStat.insertMany(dataProductStat);
-    // Transactions.insertMany(dataTransaction)
-    // OveralStat.insertMany(dataOverallStat)
-    // AffiliateStat.insertMany(dataAffiliateStat)
     app.listen(PORT, () => console.log('server is running on port ', PORT));
 })
 .catch((error) => {
