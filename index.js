@@ -19,7 +19,6 @@ const OveralStat = require('./models/OveralStat');
 const {clientRoutes, generalRoutes, managementRoutes } = require('./routes');
 dotenv.config();
 const app = express();
-app.use(express.json());
 // app.use(helmet());
 // app.use(morgan("common"));
 app.use(bodyParser.json({"limit": "30mb", extended: true})); // 30mb because we will send images
