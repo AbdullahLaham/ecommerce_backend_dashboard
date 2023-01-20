@@ -25,10 +25,11 @@ app.use(bodyParser.json({"limit": "30mb", extended: true})); // 30mb because we 
 app.use(bodyParser.urlencoded({"limit": "30mb", extended: true}));
 app.use(cors());
 
+app.use('/', (req, res) => res.send('app is running'));
 app.use('/client', clientRoutes);
 app.use('/general', generalRoutes);
 app.use('/management', managementRoutes);
-app.use('/', (req, res) => res.send('app is running'));
+
 
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 9000;
