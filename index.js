@@ -46,6 +46,3 @@ mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopolo
 .catch((error) => {
     console.log(error);
 });
-
-// // Sets "Cross-Origin-Resource-Policy: cross-origin"
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
