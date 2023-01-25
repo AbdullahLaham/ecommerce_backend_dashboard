@@ -32,6 +32,7 @@ app.use('/general', generalRoutes);
 app.use('/management', managementRoutes);
 
 
+
 // MONGOOSE SETUP
 const PORT = 5000;
 mongoose.connect('mongodb+srv://abdullah:RSxfmjMhdGPpCXhU@cluster0.dpiojbe.mongodb.net/?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true,})
